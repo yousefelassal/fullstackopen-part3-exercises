@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 
 let phonebook = [
     { 
@@ -49,6 +50,17 @@ app.delete('/api/persons/:id', (req, res) => {
     phonebook = phonebook.filter(person => person.id !== id)
 
     res.status(204).end()
+})
+
+app.post('/api/persons', (req, res) => {
+    const body = req.body
+    const phone = {
+        id: Math.floor(Math.random() * 1000000),
+        name: body.name,
+        number: body.number
+    }
+    phonebook = phonebook.concat(phone)
+    res.json(phone)
 })
 
 const PORT = 3001
