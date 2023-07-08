@@ -54,6 +54,25 @@ app.delete('/api/persons/:id', (req, res) => {
 
 app.post('/api/persons', (req, res) => {
     const body = req.body
+
+    if(!body.name){
+        return res.status(400).json({
+            error: 'name missing'
+        })
+    }
+
+    if(!body.number){
+        return res.status(400).json({
+            error: 'number missing'
+        })
+    }
+
+    if(phonebook.find(person => person.name === body.name)){
+        return res.status(400).json({
+            error: 'name must be unique'
+        })
+    }
+
     const phone = {
         id: Math.floor(Math.random() * 1000000),
         name: body.name,
