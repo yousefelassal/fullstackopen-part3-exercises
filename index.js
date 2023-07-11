@@ -55,18 +55,6 @@ app.delete('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons', (req, res, next) => {
     const body = req.body
 
-    if(!body.name){
-        return res.status(400).json({
-            error: 'name missing'
-        })
-    }
-
-    if(!body.number){
-        return res.status(400).json({
-            error: 'number missing'
-        })
-    }
-
     const person = new Phonebook({
         name: body.name,
         number: body.number,
