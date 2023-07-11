@@ -35,8 +35,8 @@ if (process.argv.length === 5) {
     const number = process.argv[4]
 
     const phonebook = new Phonebook({
-        name: name,
-        number: number,
+        name,
+        number,
       })
     
     phonebook.save().then(result => {
